@@ -1,0 +1,15 @@
+#frontPic{
+    width: 100%;
+    height: 40vh;
+    object-fit: cover; 
+}
+#structure
+{
+    margin-top: 80px;
+    position: relative;
+}   
+@media all and (max-width:1000px)
+{
+   
+
+}

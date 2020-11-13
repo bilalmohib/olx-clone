@@ -1,0 +1,17 @@
+#cat{
+    text-align: center;
+}
+button{
+    text-align: center;
+}
+Link{
+    height: 50px;
+    height: inherit;
+    text-decoration: none;
+}
+@media all and (max-width:1000px)
+{
+    #cat{
+        font-size: 30px;
+    }
+}

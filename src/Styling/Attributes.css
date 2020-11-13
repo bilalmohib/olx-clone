@@ -1,0 +1,83 @@
+#form
+{
+    border: 0.5px solid black;
+    width: 90%;
+    margin: auto;
+}
+h4,h6,button,label{
+    padding-left: 2%;
+}
+.input,input{
+    font-size: 70px;
+    max-width:400px;
+}
+#logindiv
+{
+    height: '100vh';
+    display: 'flex';
+    
+    flex-direction: 'column';
+    align-items: 'center';
+    justify-content: 'center';
+}
+#userphoto{
+    margin-left: 5%;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+}
+
+#rid{
+    font-size: 18px; 
+    max-width: 400px; 
+    margin-top: 15px;
+}
+#priceuser{
+    font-size: 18px; 
+    max-width: 400px; 
+    margin-top: 15px;
+}
+#gettedname{
+    font-size: 18px; 
+    width: 400px; 
+    margin-top: 15px;
+}
+/* This is the bootstrap buttons */
+/* The heart of the matter */
+
+  /* This is the bootstrap buttons */
+@media all and (max-width:1000px)
+{
+    #priceuser{
+        font-size: 18px; 
+        max-width: 90%; 
+        margin-top: 15px;
+    }
+    #userphoto{
+        margin-left: 3%;
+        margin-top: 2%;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+    }
+    #rid{
+        font-size: 18px; 
+        max-width: 90%; 
+        margin-top: 15px;
+    }
+    
+    #gettedname{
+        font-size: 18px; 
+        max-width: 90%; 
+        margin-top: 15px;
+    }
+    .input{
+        
+        font-size: 30px;
+        max-width:90%;
+    }
+    input{
+        font-size: 30px;
+        max-width:90%;
+    }
+}
