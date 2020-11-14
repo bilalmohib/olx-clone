@@ -6,7 +6,14 @@ import "../Styling/Success.css";
 import { connect } from "react-redux"
 import firebase from 'firebase/app';
 import firebaseAuth from 'firebase/auth/dist/index.esm'
+import history from '../history'
+import { DesktopWindows } from "@material-ui/icons";
 class Success extends React.Component {
+    go=()=>{
+        firebase.auth().signOut();
+        window.location.reload();
+        history.push('/')
+    }
     render() {
         return (
             <div>
@@ -18,7 +25,7 @@ class Success extends React.Component {
                     </div>
 
                 ) : (
-                        <div style={{ textAlign: "center", marginTop: "50vh" }}> <Link className="btn btn-primary btn-outline-warning btn-lg" to="/">Go to Home Page</Link> </div>
+                        <div style={{ textAlign: "center", marginTop: "50vh" }}> <button className="btn btn-primary btn-outline-warning btn-lg" onClick={this.go}>Go to Home Page</button> </div>
                     )}
             </div>
         )

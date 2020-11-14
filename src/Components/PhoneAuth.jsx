@@ -75,6 +75,7 @@ class PhoneLogin extends React.Component {
         if (seconds == 0) {
             clearInterval(this.timer);
             console.log("This is the phone component==>", this.props.SELLER_DATA);
+            firebase.auth().signOut();
             this.props.history.push('/success')
         }
     }

@@ -28,12 +28,7 @@ const setSelectedCategory =(c) =>{
     }
 }
 
-const setSubSelectedCategory =(s) =>{
-    console.log("The selected Sub-category is : ",s)
-    return (dispatch)=>{
-        dispatch({type:"SETSELECTEDSUBCATEGORY",data:s})
-    }
-}
+
 
 
 const add_bookmark = (i) => {
@@ -162,5 +157,5 @@ export {
     add_bookmark,
     get_bookmarked,
     setSelectedCategory,
-    setSubSelectedCategory
+   
 }

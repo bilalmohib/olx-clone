@@ -4,20 +4,60 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faListAlt } from '@fortawesome/free-solid-svg-icons';
 import "../Styling/Categories.css";
 import { connect } from "react-redux"
-import { setSubSelectedCategory } from '../store/action';
 import { setSelectedCategory } from '../store/action';
-
+import { useHistory } from "react-router-dom";
+import history from '../history'
+import { Redirect,withRouter } from "react-router-dom";
 class Categories extends React.Component {
+    handleClick = (c,event) => {
+        //alert(event.target.innerText);
+        //////////////////////////////////////////////
+        let category=c;
+        let subCategory=event.target.innerText;
+
+        let current_category = {
+            Category: category,
+            SubCategory:subCategory
+        }
+
+        this.props.setSelectedCategory(current_category);
+ 
+        //history.push('/types')
+        return <Redirect to="/types" />
+        //////////////////////////////////////////////
+       
+    }
+
+    handleClick1 = (c,s) => {
+        //alert(event.target.innerText);
+        //////////////////////////////////////////////
+        let category=c;
+        let subCategory=s;
+
+        let current_category = {
+            Category: category,
+            SubCategory:subCategory
+        }
+
+        this.props.setSelectedCategory(current_category);
+ 
+        //history.push('/types')
+        return <Redirect to="/types" />
+        //////////////////////////////////////////////
+       
+    }
+
     render() {
+        console.log("the category selected is=====>",this.props.current_category)
         return (
             <div>
                 <div id="categories">
                     <ul>
-                        <div class="dropdown">
-                            <button class="btn btn-transparent text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div className="dropdown">
+                            <button className="btn btn-transparent text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <b>All Categories</b>
   </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 {/* Here the main div starts */}
                                 <div style={{ marginTop: "10vh", width: "90vw", height: "fit-content", border: "1px solid black",display:"flex"}}>
 
@@ -25,46 +65,46 @@ class Categories extends React.Component {
                                     <div style={{marginRight:"2%"}}>
 
                                         <div className="bigDiv">
-                                            <p className="text-dark"><Link><b>Vehicles</b></Link></p>
-                                            <p><Link>Boats</Link></p>
-                                            <p><Link>Other Vehicles</Link></p>
-                                            <p><Link>Rickshaw & Chingchi</Link></p>
-                                            <p><Link>Buses, Vans & Trucks</Link></p>
-                                            <p><Link>Spare Parts</Link></p>
-                                            <p><Link>Cars Accessories</Link></p>
-                                            <p><Link>Cars on Installments</Link></p>
-                                            <p><Link>Cars</Link></p>
+                                            <p className="text-dark"><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Vehicles","")}><b>Vehicles</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Boats</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Other Vehicles</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Rickshaw & Chingchi</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Buses, Vans & Trucks</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Spare Parts</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Cars Accessories</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Cars on Installments</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Cars</Link></p>
                                         </div>
 
                                         <div className="bigDiv">
-                                            <p><Link><b>Mobiles</b></Link></p>
-                                            <p><Link>Mobile Phones</Link></p>
-                                            <p><Link>Accessories</Link></p>
-                                            <p><Link>Tablets</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Mobiles","")}><b>Mobiles</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Mobiles",e)}>Mobile Phones</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Mobiles",e)}>Accessories</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Mobiles",e)}>Tablets</Link></p>
                                         </div>
 
                                         <div className="bigDiv">
-                                            <p><Link><b>Electronics and Home Appliances</b></Link></p>
-                                            <p><Link>Washing Machines and Dryers</Link></p>
-                                            <p><Link>Fridges and Freezers</Link></p>
-                                            <p><Link>AC and Coolers</Link></p>
-                                            <p><Link>Kitchen Appliances</Link></p>
-                                            <p><Link>Generators, UPS and Power Solutions</Link></p>
-                                            <p><Link>Other Home Appliances</Link></p>
-                                            <p><Link>Games and Entertainment</Link></p>
-                                            <p><Link>Cameras and Accessories</Link></p>
-                                            <p><Link>TV - Video - Audio</Link></p>
-                                            <p><Link>Computers and Accessories</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Electronics and Home Appliances","")}><b>Electronics and Home Appliances</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Washing Machines and Dryers</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Fridges and Freezers</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>AC and Coolers</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Kitchen Appliances</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Generators, UPS and Power Solutions</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Other Home Appliances</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Games and Entertainment</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Cameras and Accessories</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>TV - Video - Audio</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Computers and Accessories</Link></p>
                                         </div>
 
 
                                         <div className="bigDiv">
-                                            <p><Link><b>Property for Sale</b></Link></p>
-                                            <p><Link>Portions & Floors</Link></p>
-                                            <p><Link>Shops - Offices - Commercial Space</Link></p>
-                                            <p><Link>Apartments & Flats</Link></p>
-                                            <p><Link>Houses</Link></p>
-                                            <p><Link>Land & Plots</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Property for Sale","")}><b>Property for Sale</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Sale",e)}>Portions & Floors</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Sale",e)}>Shops - Offices - Commercial Space</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Sale",e)}>Apartments & Flats</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Sale",e)}>Houses</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Sale",e)}>Land & Plots</Link></p>
                                         </div>
                                     </div>
 
@@ -72,51 +112,51 @@ class Categories extends React.Component {
                                     <div style={{marginRight:"2%"}}>
 
                                         <div className="bigDiv">
-                                            <p><Link><b>Animals</b></Link></p>
-                                            <p><Link>Other Animals</Link></p>
-                                            <p><Link>Pet Food & Accessories</Link></p>
-                                            <p><Link>Horses</Link></p>
-                                            <p><Link>Livestock</Link></p>
-                                            <p><Link>Dogs</Link></p>
-                                            <p><Link>Cats</Link></p>
-                                            <p><Link>Hens & Aseel</Link></p>
-                                            <p><Link>Birds</Link></p>
-                                            <p><Link>Fish & Aquariums</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Animals","")}><b>Animals</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Other Animals</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Pet Food & Accessories</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Horses</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Livestock</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Dogs</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Cats</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Hens & Aseel</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Birds</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Fish & Aquariums</Link></p>
                                         </div>
 
                                         <div className="bigDiv">
-                                            <p><Link><b>Furniture & Home Decor</b></Link></p>
-                                            <p><Link>Other Household Items</Link></p>
-                                            <p><Link>Office Furniture</Link></p>
-                                            <p><Link>Curtains & Blinds</Link></p>
-                                            <p><Link>Rugs & Carpets</Link></p>
-                                            <p><Link>Painting & Mirrors</Link></p>
-                                            <p><Link>Garden & Outdoor</Link></p>
-                                            <p><Link>Tables & Dining</Link></p>
-                                            <p><Link>Home Decoration</Link></p>
-                                            <p><Link>Beds & Wardrobes</Link></p>
-                                            <p><Link>Sofa & Chairs</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Furniture & Home Decor","")}><b>Furniture & Home Decor</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Other Household Items</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Office Furniture</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Curtains & Blinds</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Rugs & Carpets</Link></p>
+                                            <p><Link to="/types" to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Painting & Mirrors</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Garden & Outdoor</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Tables & Dining</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Home Decoration</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Beds & Wardrobes</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Sofa & Chairs</Link></p>
                                         </div>
 
                                         <div className="bigDiv">
-                                            <p><Link><b>Business, Industrial & Agriculture</b></Link></p>
-                                            <p><Link>Medical & Pharma</Link></p>
-                                            <p><Link>Other Business & Industry</Link></p>
-                                            <p><Link>Agriculture</Link></p>
-                                            <p><Link>Construction & Heavy Machinery</Link></p>
-                                            <p><Link>Trade & Industrial</Link></p>
-                                            <p><Link>Food & Restaurants</Link></p>
-                                            <p><Link>Business for Sale</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Business, Industrial & Agriculture","")}><b>Business, Industrial & Agriculture</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Medical & Pharma</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Other Business & Industry</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Agriculture</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Construction & Heavy Machinery</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Trade & Industrial</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Food & Restaurants</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Business for Sale</Link></p>
                                         </div>
 
 
                                         <div className="bigDiv">
-                                            <p><Link><b>Bikes</b></Link></p>
-                                            <p><Link>Scooters</Link></p>
-                                            <p><Link>ATV & Quads</Link></p>
-                                            <p><Link>Bicycles</Link></p>
-                                            <p><Link>Spare Parts</Link></p>
-                                            <p><Link>Motorcycles</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Bikes","")}><b>Bikes</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Bikes",e)}>Scooters</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Bikes",e)}>ATV & Quads</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Bikes",e)}>Bicycles</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Bikes",e)}>Spare Parts</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Bikes",e)}>Motorcycles</Link></p>
                                             
                                         </div>
                                     </div>
@@ -126,54 +166,54 @@ class Categories extends React.Component {
                                     <div style={{marginRight:"2%"}}>
 
                                         <div className="bigDiv">
-                                            <p><Link><b>Fashion & Beauty</b></Link></p>
-                                            <p><Link>Other Fashion</Link></p>
-                                            <p><Link>Couture</Link></p>
-                                            <p><Link>Lawn & Pret</Link></p>
-                                            <p><Link>Wedding</Link></p>
-                                            <p><Link>Watches</Link></p>
-                                            <p><Link>Skin & Hair</Link></p>
-                                            <p><Link>Make Up</Link></p>
-                                            <p><Link>Jewellery</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Fashion & Beauty","")}><b>Fashion & Beauty</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Other Fashion</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Couture</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Lawn & Pret</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Wedding</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Watches</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Skin & Hair</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Make Up</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Jewellery</Link></p>
 
-                                            <p><Link>Footwear</Link></p>
-                                            <p><Link>Clothes</Link></p>
-                                            <p><Link>Accessories</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Footwear</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Clothes</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Accessories</Link></p>
                                         </div>
 
             
                                         <div className="bigDiv">
-                                            <p><Link><b>Property for Rent</b></Link></p>
-                                            <p><Link>Land & Plots</Link></p>
-                                            <p><Link>Vacation Rentals - Guest Houses</Link></p>
-                                            <p><Link>Roommates & Paying Guests</Link></p>
-                                            <p><Link>Rooms</Link></p>
-                                            <p><Link>Shops - Offices - Commercial Space</Link></p>
-                                            <p><Link>Portions & Floors</Link></p>
-                                            <p><Link>Apartments & Flats</Link></p>
-                                            <p><Link>Houses</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Property for Rent","")}><b>Property for Rent</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Land & Plots</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Vacation Rentals - Guest Houses</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Roommates & Paying Guests</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Rooms</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Shops - Offices - Commercial Space</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Portions & Floors</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Apartments & Flats</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Houses</Link></p>
                                         </div>
 
 
                                         <div className="bigDiv">
-                                            <p><Link><b>Jobs</b></Link></p>
-                                            <p><Link>Other Jobs</Link></p>
-                                            <p><Link>Part - Time</Link></p>
-                                            <p><Link>Domestic Staff</Link></p>
-                                            <p><Link>Medical</Link></p>
-                                            <p><Link>Manufacturing</Link></p>
-                                            <p><Link>Accounting & Finance</Link></p>
-                                            <p><Link>Human Resources</Link></p>
-                                            <p><Link>Clerical & Administration</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Jobs","")}><b>Jobs</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Other Jobs</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Part - Time</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Domestic Staff</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Medical</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Manufacturing</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Accounting & Finance</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Human Resources</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Clerical & Administration</Link></p>
 
-                                            <p><Link>Hotels & Tourism</Link></p>
-                                            <p><Link>IT & Networking</Link></p>
-                                            <p><Link>Sales</Link></p>
-                                            <p><Link>Customer Service</Link></p>
-                                            <p><Link>Education</Link></p>
-                                            <p><Link>Advertising & PR</Link></p>
-                                            <p><Link>Marketing</Link></p>
-                                            <p><Link>Online</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Hotels & Tourism","")}>Hotels & Tourism</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>IT & Networking</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>Sales</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>Customer Service</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>Education</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>Advertising & PR</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>Marketing</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>Online</Link></p>
                                         </div>
                                     </div>
 
@@ -182,41 +222,41 @@ class Categories extends React.Component {
                                     <div style={{marginRight:"2%"}}>
 
                                         <div className="bigDiv">
-                                            <p><Link><b>Services</b></Link></p>
-                                            <p><Link>Farm & Fresh Food</Link></p>
-                                            <p><Link>Catering & Restaurant</Link></p>
-                                            <p><Link>Home & Office Repair</Link></p>
-                                            <p><Link>Movers & Packers</Link></p>
-                                            <p><Link>Maids & Domestic Help</Link></p>
-                                            <p><Link>Health & Beauty</Link></p>
-                                            <p><Link>Event Services</Link></p>
-                                            <p><Link>Electronics & Computer Repair</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Services","")}><b>Services</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Farm & Fresh Food</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Catering & Restaurant</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Home & Office Repair</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Movers & Packers</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Maids & Domestic Help</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Health & Beauty</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Event Services</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Electronics & Computer Repair</Link></p>
 
-                                            <p><Link>Other Services</Link></p>
-                                            <p><Link>Web Development</Link></p>
-                                            <p><Link>Drivers & Taxi</Link></p>
-                                            <p><Link>Car Rental</Link></p>
-                                            <p><Link>Travel & Visa</Link></p>
-                                            <p><Link>Education & Classes</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Other Services</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Web Development</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Drivers & Taxi</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Car Rental</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Travel & Visa</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Education & Classes</Link></p>
                                         </div>
 
                                         <div className="bigDiv">
-                                            <p><Link><b>Books, Sports & Hobbies</b></Link></p>
-                                            <p><Link>Other Hobbies</Link></p>
-                                            <p><Link>Gym & Fitness</Link></p>
-                                            <p><Link>Sports Equipment</Link></p>
-                                            <p><Link>Musical Instruments</Link></p>
-                                            <p><Link>Books & Magazines</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Books, Sports & Hobbies","")}><b>Books, Sports & Hobbies</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Books, Sports & Hobbies",e)}>Other Hobbies</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Books, Sports & Hobbies",e)}>Gym & Fitness</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Books, Sports & Hobbies",e)}>Sports Equipment</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Books, Sports & Hobbies",e)}>Musical Instruments</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Books, Sports & Hobbies",e)}>Books & Magazines</Link></p>
                                         </div>
 
                                         <div className="bigDiv">
-                                            <p><Link><b>Kids</b></Link></p>
-                                            <p><Link>Kids Accessories</Link></p>
-                                            <p><Link>Kids Bikes</Link></p>
-                                            <p><Link>Swings & Slides</Link></p>
-                                            <p><Link>Prams & Walkers</Link></p>
-                                            <p><Link>Toys</Link></p>
-                                            <p><Link>Kids Furniture</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick1("Kids","")}><b>Kids</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids",e)}>Kids Accessories</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids",e)}>Kids Bikes</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids",e)}>Swings & Slides</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids",e)}>Prams & Walkers</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids",e)}>Toys</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids",e)}>Kids Furniture</Link></p>
                                         </div>
 
 
@@ -233,46 +273,263 @@ class Categories extends React.Component {
                             </div>
                         </div>
 
-                        <Link>Mobile Phones</Link>
-                        <Link>Cars</Link>
-                        <Link>Motorcycles</Link>
-                        <Link>Houses</Link>
-                        <Link>TV-Video-Audio</Link>
-                        <Link>Tablets</Link>
-                        <Link>Land and Plots</Link>
+                        <Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>Mobile Phones</Link>
+                        <Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>Cars</Link>
+                        <Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>Motorcycles</Link>
+                        <Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>Houses</Link>
+                        <Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>TV-Video-Audio</Link>
+                        <Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>Tablets</Link>
+                        <Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>Land and Plots</Link>
                     </ul>
                 </div>
                 <div style={{ textAlign: "center", margin: "3%" }} id="displayDesktop" className="btn-group">
-                    <button className="btn btn-info btn-lg" type="button">
+                    {/* <button className="btn btn-info btn-lg" type="button">
                         <FontAwesomeIcon style={{ color: "white", fontSize: "25px" }} icon={faListAlt} /> Categories
                     </button>
                     <button type="button" className="btn btn-lg btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span className="sr-only">Toggle Dropdown</span>
                     </button>
                     <div className="dropdown-menu">
-                        <Link>Mobile Phones</Link> <br />
-                        <Link>Cars</Link> <br />
-                        <Link>Motorcycles</Link> <br />
-                        <Link>Houses</Link> <br />
-                        <Link>TV-Video-Audio</Link> <br />
-                        <Link>Tablets</Link> <br />
-                        <Link>Land and Plots</Link> <br />
-                    </div>
+                        <button className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>Mobile Phones</button> <br />
+                        <button className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>Cars</button> <br />
+                        <button className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>Motorcycles</button> <br />
+                        <button className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>Houses</button> <br />
+                        <button className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>TV-Video-Audio</button> <br />
+                        <button className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>Tablets</button> <br />
+                        <button className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("1",e)}>Land and Plots</button> <br />
+                    </div> */}
+                    <button className="btn btn-dark btn-sm text-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <b>All Categories</b>
+  </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                {/* Here the main div starts */}
+                                <div style={{ marginTop: "10vh", width: "90vw", height: "fit-content", border: "1px solid black",display:"block"}}>
+
+
+                                    <div style={{marginRight:"2%"}}>
+
+                                        <div className="bigDiv">
+                                            <p className="text-dark"><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles","")}><b>Vehicles</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Boats</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Other Vehicles</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Rickshaw & Chingchi</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Buses, Vans & Trucks</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Spare Parts</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Cars Accessories</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Cars on Installments</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Vehicles",e)}>Cars</Link></p>
+                                        </div>
+
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Mobiles","")}><b>Mobiles</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Mobiles",e)}>Mobile Phones</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Mobiles",e)}>Accessories</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Mobiles",e)}>Tablets</Link></p>
+                                        </div>
+
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances","")}><b>Electronics and Home Appliances</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Washing Machines and Dryers</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Fridges and Freezers</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>AC and Coolers</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Kitchen Appliances</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Generators, UPS and Power Solutions</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Other Home Appliances</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Games and Entertainment</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Cameras and Accessories</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>TV - Video - Audio</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Electronics and Home Appliances",e)}>Computers and Accessories</Link></p>
+                                        </div>
+
+
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Sale","")}><b>Property for Sale</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Sale",e)}>Portions & Floors</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Sale",e)}>Shops - Offices - Commercial Space</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Sale",e)}>Apartments & Flats</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Sale",e)}>Houses</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Sale",e)}>Land & Plots</Link></p>
+                                        </div>
+                                    </div>
+
+
+                                    <div style={{marginRight:"2%"}}>
+
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals","")}><b>Animals</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Other Animals</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Pet Food & Accessories</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Horses</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Livestock</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Dogs</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Cats</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Hens & Aseel</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Birds</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Animals",e)}>Fish & Aquariums</Link></p>
+                                        </div>
+
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor","")}><b>Furniture & Home Decor</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Other Household Items</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Office Furniture</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Curtains & Blinds</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Rugs & Carpets</Link></p>
+                                            <p><Link to="/types" to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Painting & Mirrors</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Garden & Outdoor</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Tables & Dining</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Home Decoration</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Beds & Wardrobes</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Furniture & Home Decor",e)}>Sofa & Chairs</Link></p>
+                                        </div>
+
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture","")}><b>Business, Industrial & Agriculture</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Medical & Pharma</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Other Business & Industry</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Agriculture</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Construction & Heavy Machinery</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Trade & Industrial</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Food & Restaurants</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Business, Industrial & Agriculture",e)}>Business for Sale</Link></p>
+                                        </div>
+
+
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Bikes","")}><b>Bikes</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Bikes",e)}>Scooters</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Bikes",e)}>ATV & Quads</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Bikes",e)}>Bicycles</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Bikes",e)}>Spare Parts</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Bikes",e)}>Motorcycles</Link></p>
+                                            
+                                        </div>
+                                    </div>
+
+
+
+                                    <div style={{marginRight:"2%"}}>
+
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty","")}><b>Fashion & Beauty</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Other Fashion</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Couture</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Lawn & Pret</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Wedding</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Watches</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Skin & Hair</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Make Up</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Jewellery</Link></p>
+
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Footwear</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Clothes</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Fashion & Beauty",e)}>Accessories</Link></p>
+                                        </div>
+
+            
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent","")}><b>Property for Rent</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Land & Plots</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Vacation Rentals - Guest Houses</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Roommates & Paying Guests</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Rooms</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Shops - Offices - Commercial Space</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Portions & Floors</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Apartments & Flats</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Property for Rent",e)}>Houses</Link></p>
+                                        </div>
+
+
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs","")}><b>Jobs</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Other Jobs</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Part - Time</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Domestic Staff</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Medical</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Manufacturing</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Accounting & Finance</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Human Resources</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Jobs",e)}>Clerical & Administration</Link></p>
+
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism","")}>Hotels & Tourism</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>IT & Networking</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>Sales</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>Customer Service</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>Education</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>Advertising & PR</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>Marketing</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Hotels & Tourism",e)}>Online</Link></p>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div style={{marginRight:"2%"}}>
+
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services","")}><b>Services</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Farm & Fresh Food</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Catering & Restaurant</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Home & Office Repair</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Movers & Packers</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Maids & Domestic Help</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Health & Beauty</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Event Services</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Electronics & Computer Repair</Link></p>
+
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Other Services</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Web Development</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Drivers & Taxi</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Car Rental</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Travel & Visa</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Services",e)}>Education & Classes</Link></p>
+                                        </div>
+
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Books, Sports & Hobbies","")}><b>Books, Sports & Hobbies</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Books, Sports & Hobbies",e)}>Other Hobbies</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Books, Sports & Hobbies",e)}>Gym & Fitness</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Books, Sports & Hobbies",e)}>Sports Equipment</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Books, Sports & Hobbies",e)}>Musical Instruments</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Books, Sports & Hobbies",e)}>Books & Magazines</Link></p>
+                                        </div>
+
+                                        <div className="bigDiv">
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids","")}><b>Kids</b></Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids",e)}>Kids Accessories</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids",e)}>Kids Bikes</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids",e)}>Swings & Slides</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids",e)}>Prams & Walkers</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids",e)}>Toys</Link></p>
+                                            <p><Link to="/types" className="btn btn-transparent btn-link" onClick={(e) => this.handleClick("Kids",e)}>Kids Furniture</Link></p>
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+
+
+                                </div>
+                                {/* Here the main div starts */}
+                            </div>
+                        </div>
+
                 </div>
 
-            </div>
+    
         )
     }
 }
 const mapStateToProps = (state) => ({
     current_category: state.app.SET_CATEGORY,
-    current_sub_category: state.app.SET_SUB_CATEGORY
 })
 
 //updating the data of the state
 const mapDispatchToProp = (dispatch) => ({
-    setSelectedCategory: (data) => dispatch(setSelectedCategory(data)),
-    setSubSelectedCategory: (data) => dispatch(setSubSelectedCategory(data))
+    setSelectedCategory: (data) => dispatch(setSelectedCategory(data))
 })
 //updating the data of the state
 export default connect(mapStateToProps, mapDispatchToProp)(Categories);

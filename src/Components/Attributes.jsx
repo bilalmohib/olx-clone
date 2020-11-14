@@ -134,7 +134,7 @@ class Attributes extends React.Component {
                 price
             }
             this.props.set_seller_data(selldata);
-            alert(`${firebase.auth().currentUser.photoURL} successfully completed the step.Click Next`)
+            alert(`${firebase.auth().currentUser.displayName} You have successfully submitted.Please Click Next`)
             this.setState({
                 SellData: selldata,
                 btndisabled:false,
@@ -185,7 +185,7 @@ class Attributes extends React.Component {
                                 <h3 className="text-center">Post Your Ad</h3>
                                 <div id="form">
                                     <h4>SELECTED CATEGORY</h4>
-                                    <h6>{this.props.SELLER_DATA.Category} <Link to="/sell">Change</Link> </h6>
+                                    <h6>{this.props.SELLER_DATA.Category}/{this.props.SELLER_DATA.SubCategory} <Link to="/sell">Change</Link> </h6>
                                     <hr />
                                     <h4>INCLUDE SOME DETAILS</h4>
                                     <h6>Condition *</h6>
@@ -257,10 +257,18 @@ class Attributes extends React.Component {
                                                 <option disabled id="line">________________________________________________</option>
                                                 <option defaultValue="Lahore,Pakistan" value="Lahore,Pakistan">Lahore,Pakistan</option>
                                                 <option value="Punjab">Punjab</option>
-                                                <option value="Lahore">Lahore</option>
-                                                <option value="Kala Khatai Road">Kala Khatai Road</option>
-                                                <option value="Islamabad">Islamabad</option>
+                                                <option value="Azad Jammu and Kashmir">Azad Jammu and Kashmir</option>
+                                                <option value="Balochistan">Balochistan</option>
+                                                <option value="Gilgit–Baltistan">Gilgit–Baltistan</option>
+                                                <option value="Islamabad Capital Territory">Islamabad Capital Territory</option>
+                                                <option value="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa</option>
                                                 <option value="Sindh">Sindh</option>
+                                                <option value="Muzaffarabad">Muzaffarabad</option>
+                                                <option value="Quetta">Quetta</option>
+                                                <option value="Gilgit">Gilgit</option>
+                                                <option value="Islamabad">Islamabad</option>
+                                                <option value="Peshawar">Peshawar</option>
+                                                <option value="Karachi">Karachi</option>
                                             </select>
                                         </div>
                                     </div>

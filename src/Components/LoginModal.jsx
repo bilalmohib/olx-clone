@@ -15,11 +15,15 @@ import Slider from './OLXSlider'
 import { Button, Modal } from 'react-bootstrap'
 
 import { connect } from 'react-redux'
-
+import { Link } from "react-router-dom"
 import { set_data } from '../store/action/index'
 import { ControlCamera } from '@material-ui/icons';
-
-
+import '../Styling/LoginModal.css'
+import { useHistory } from "react-router-dom";
+import '../Styling/Header.css'
+import '../Styling/Home.css'
+import Header from "./Header"
+import Categories from './Categories'
 
 class Login extends React.Component {
     constructor() {
@@ -53,13 +57,13 @@ class Login extends React.Component {
             signInSuccessWithAuthResult: () => false
         }
     }
-    componentDidMount(){
+    componentDidMount() {
 
-        var positiono={};
+        var positiono = {};
         if ('geolocation' in navigator) {
             // console.log("Geolocation is Available");
             navigator.geolocation.getCurrentPosition((position) => {
-               positiono=position
+                positiono = position
                 //  console.log("Latitude==>",position.coords.latitude);
                 //  console.log("Longitude==>",position.coords.longitude);
             })
@@ -84,11 +88,11 @@ class Login extends React.Component {
                     name: firebase.auth().currentUser.displayName,
                     email: firebase.auth().currentUser.email,
                     photo: firebase.auth().currentUser.photoURL,
-                    uid:firebase.auth().currentUser.uid,
+                    uid: firebase.auth().currentUser.uid,
                     isSignedIn: this.state.isSignedIn,
                     position: positiono,
-                    LoginTime:dateTime
-                }    
+                    LoginTime: dateTime
+                }
                 this.setState({
                     user_data: userdata
                 })
@@ -100,76 +104,65 @@ class Login extends React.Component {
         })
 
     }
-    
-    componentWillUnmount=()=>{
+    move = () => {
+        alert(`Welcome ${firebase.auth().currentUser.emailVerified} Login Success`)
+        this.props.history.push('/')
+    }
+
+    componentWillUnmount = () => {
         firebase.database().ref(`Users/`).push(this.state.user_data);
     }
 
     render() {
-       
+
         if (this.state.isSignedIn == true) {
             this.props.set_data(this.state.user_data);
-       
+
         }
 
         //  console.log("redux data",this.props.USER)
         return (
             <div>
-                <button style={{fontSize:"25px"}} className="btn btn-primary" onClick={() => { this.handleModal() }}>
-                    Login
-                </button>
 
-                <Modal
-                    backdrop="static"
-                    keyboard={false} show={this.state.show}>
-                    <Modal.Header>
-                        <Slider />
-                    </Modal.Header>
-                    <Modal.Body>
-                        {
-                            this.state.isSignedIn ? (
-                                <div>
-                                    <div>Signed In!</div>
-                                    <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
-                                    <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
-                                    <img
-                                        alt="profile picture"
-                                        src={firebase.auth().currentUser.photoURL}
-                                    />
-                                </div>
-                            ) : (
-                                    <div style={{ height: "200px" }}>
-                                        <StyledFirebaseAuth
-                                            uiConfig={this.uiConfig}
-                                            firebaseAuth={firebase.auth()}
-                                        />
-                                    </div>
-                                )}
-                    </Modal.Body>
-                    <Modal.Footer>
-                        {
-                            this.state.isSignedIn ? (
-                                <div></div>
-                            ) : (
-                                    <Button onClick={() => { this.closeModal() }} variant="secondary">
-                                        Close
-                                    </Button>
-                                )
-                        }
+                {
+                    this.state.isSignedIn ? (
+
+                        <div>
+
+                            <div className="fixed-top" style={{ marginTop: "0px", width: "100%" }}>
+                                <Header />
+                            </div>
+                            <div id="structure">
+                                <Categories />
+                                <hr />
+                                <h1 className="text-success" style={{ textAlign: "center", marginTop: "5%" }}>Welcome! <span className="text-primary">{firebase.auth().currentUser.displayName}</span> to OLX</h1>
+                                <div className='text-center'> <img style={{ borderRadius: "50%" }} width="70" height="70"
+                                    alt="profile picture"
+                                    src={firebase.auth().currentUser.photoURL}
+                                /></div>
+                                <h4 style={{ textAlign: "center", marginTop: "2%" }} className="text-info">You are here because you have successfully Logged In.Now go to the main page to post the ads or check them.Thanks</h4>
+                                <div style={{ textAlign: "center", marginTop: "5%" }}> <Link className="btn btn-primary btn-outline-warning btn-lg" to="/">Go to Home Page</Link> </div>
+                            </div>
 
 
-                        {
-                            this.state.isSignedIn ? (
-                                <Button onClick={() => { this.closeModal() }} variant="success">
-                                    Go To Home
-                                </Button>
 
-                            ) : (
-                                    <div></div>
-                                )
-                        }
-                    </Modal.Footer>
-                </Modal>
+
+
+
+                        </div>
+
+                    ) : (
+                            <div style={{ height: "200px" }}>
+                                 <h1 className="text-success" style={{ textAlign: "center", marginTop: "5%" }}>Sigin To continue Please</h1>
+                                 <div className="text-center"><img width="100" height="100" src="https://cdn2.iconfinder.com/data/icons/mixd/512/23_OLX-512.png" alt="This is OLX LOGO"/></div>
+                                 <h1 style={{fontFamily:"serif"}} className="text-center">By Muhammad Bilal Mohib-ul-Nabi <a href="https://github.com/Muhammad-Bilal-7896/">Github Profile</a></h1> 
+                                <StyledFirebaseAuth
+                                    uiConfig={this.uiConfig}
+                                    firebaseAuth={firebase.auth()}
+                                />
+                            </div>
+                        )
+                }
 
             </div>
         );

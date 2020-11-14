@@ -21,18 +21,24 @@ class HomePage extends React.Component {
     componentDidMount() {
         this.props.get_seller_all_data();
     }
+    deleteAll=()=>{
+        let database=firebase.database();
+        let userRef = database.ref('WithoutSignIn');
+        userRef.remove();
+    }
     render() {
         console.log("firebase sales data", this.props.users_ads)
         return (
             <div className="home-page">
                 <div className="fixed-top" style={{marginTop:"0px",width:"100%"}}>
+                {/* <button onClick={this.deleteAll} className="btn btn-danger btn-block">DELETE ALL THE DATA</button> */}
                 <Header />
                 </div>
                 <div id="structure">
                 <Categories />
                 <hr/>
                 <img className=".container-fluid" id="frontPic" src={frontPic} alt="This is the front pic of olx" />
-                <ul style={{position:"relative",marginTop:"5%",zIndex:"-1"}}>
+                <ul style={{position:"relative",marginTop:"5%"}}>
                     {this.props.users_ads.map((v, i) => {
                         return <li style={{display:"inline"}} key={i}>
                             <div style={{display:"inline-block"}}>

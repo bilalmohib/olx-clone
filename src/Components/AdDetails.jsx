@@ -38,7 +38,7 @@ class AdDetails extends React.Component {
                     <hr />
 
                     <div style={{ borderRadius: "1%", marginLeft: "3%", marginTop: "3%" }}>
-                        <h6 className="text-dark">Home / {this.props.users_ads[this.props.SET_KEY].Category}</h6>
+                        <h6 className="text-dark">Home / {this.props.users_ads[this.props.SET_KEY].Category}/{this.props.users_ads[this.props.SET_KEY].SubCategory}</h6>
                     </div>
                     <br />
 

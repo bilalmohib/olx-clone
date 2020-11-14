@@ -58,10 +58,18 @@ class Header extends React.Component {
                                         <option disabled id="line">________________________________________________</option>
                                         <option defaultValue="Lahore,Pakistan" value="Lahore,Pakistan">Lahore,Pakistan</option>
                                         <option value="Punjab">Punjab</option>
-                                        <option value="Lahore">Lahore</option>
-                                        <option value="Kala Khatai Road">Kala Khatai Road</option>
-                                        <option value="Islamabad">Islamabad</option>
+                                        <option value="Azad Jammu and Kashmir">Azad Jammu and Kashmir</option>
+                                        <option value="Balochistan">Balochistan</option>
+                                        <option value="Gilgit–Baltistan">Gilgit–Baltistan</option>
+                                        <option value="Islamabad Capital Territory">Islamabad Capital Territory</option>
+                                        <option value="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa</option>
                                         <option value="Sindh">Sindh</option>
+                                        <option value="Muzaffarabad">Muzaffarabad</option>
+                                        <option value="Quetta">Quetta</option>
+                                        <option value="Gilgit">Gilgit</option>
+                                        <option value="Islamabad">Islamabad</option>
+                                        <option value="Peshawar">Peshawar</option>
+                                        <option value="Karachi">Karachi</option>
                                     </select>
                                 </div>
 
@@ -123,26 +131,26 @@ class Header extends React.Component {
 
                                 {(this.props.USER_AUTH_DATA.isSignedIn) ? (
                                     //    This is the dropdown items
-                                    
+
 
                                     <div id="DropUser" className="dropdown">
-                                   
+
                                         <button type="button" style={{ borderRadius: "50%", width: "35px", height: "35px", marginTop: "-20px", display: "flex" }} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <img style={{ borderRadius: "50%", width: "35px", height: "35px", marginTop: "-4.4px", marginLeft: "-5.5px" }} src={firebase.auth().currentUser.photoURL} alt="" />
                                             <FontAwesomeIcon style={{ color: "grey", fontWeight: "initial" }} id="Icon" icon={faAngleDown} />
                                         </button>
                                         <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                            <Link style={{ marginLeft: "0%", marginBottom: "5px" }} to="/sell" className="btn btn-warning btn-outline-info btn-block text-left" type="button"><FontAwesomeIcon id="camico" icon={faCamera} /> <span style={{fontSize:"18px"}}> Start Selling</span></Link>
+                                            <Link style={{ marginLeft: "0%", marginBottom: "5px" }} to="/sell" className="btn btn-warning btn-outline-info btn-block text-left" type="button"><FontAwesomeIcon id="camico" icon={faCamera} /> <span style={{ fontSize: "18px" }}> Start Selling</span></Link>
                                             <Link style={{ marginLeft: "0%", marginBottom: "5px" }} to="/MyAds" className="btn btn-secondary btn-block btn-outline-light text-left" type="button">
-                                                <FontAwesomeIcon id="camico" icon={faBook} /> <span style={{fontSize:"20px"}}>My Ads</span></Link>
-                                            <button style={{ width: "100%" }} className="btn btn-danger" onClick={this.sign_out}><span style={{fontSize:"20px"}}>SignOut !</span></button>
-                                            <div id="btnbtnlogin" className="btn btn-transparent"><Login /></div>
+                                                <FontAwesomeIcon id="camico" icon={faBook} /> <span style={{ fontSize: "20px" }}>My Ads</span></Link>
+                                            <button style={{ width: "100%" }} className="btn btn-danger" onClick={this.sign_out}><span style={{ fontSize: "20px" }}>SignOut !</span></button>
+
                                         </div>
                                     </div>
 
                                     //    This is the drop down items
                                 ) : (
-                                        <div id="btnbtnlogin" className="btn btn-transparent"><Login /></div>
+                                        <div id="btnbtnlogin" className="btn btn-transparent"> <Link className="btn btn-primary btn-lg" to="/login">Login</Link> </div>
                                     )}
 
 
@@ -159,7 +167,7 @@ class Header extends React.Component {
                                         </div>
                                     ) : (
                                             <div>
-                                                <div className="btn btn-primary" style={{ textAlign: "center", fontSize: "25px" }}><Login /></div>
+                                                <div className="btn btn-primary" style={{ textAlign: "center", fontSize: "25px" }}><Link className="btn btn-primary btn-lg" to="/login">Login</Link></div>
                                             </div>
                                         )}
 
@@ -200,7 +208,7 @@ class Header extends React.Component {
                                         (
                                             // <Link id="sellbtn" to="" className="btn btn-info">SELL</Link>
                                             <div>
-                                                <button onClick={() => alert("Please LOGIN to SELL")} id="sellbtn" className=" btn-lg btn-warning">SELL</button>
+                                                <Link id="sellbtn" className=" btn btn-warning btn-lg" to="/login">SELL</Link>
                                                 {/* <div className="btn btn-outline-dark btn-warning" style={{ marginLeft: "170%", marginTop: "2%" }}><Login /></div> */}
                                             </div>
                                         )
