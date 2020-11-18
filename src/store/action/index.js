@@ -21,9 +21,10 @@ const setCurrentKey = (data) => {
 }
 
 const setSearchedData=(data)=>{
-    return (dispatch) => {
-        dispatch({type:"SETSEARCHEDDATA",data:data})
-    }
+    console.log("The data data you you searched is in action is : ",data)
+    // return (dispatch) => {
+    //     dispatch({type:"SETSEARCHEDDATA",data:data})
+    // }
 }
 
 const setSelectedCategory =(c) =>{

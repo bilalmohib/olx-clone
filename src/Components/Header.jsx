@@ -40,22 +40,28 @@ class Header extends React.Component {
             }
         );
       
-            filteredAds=this.props.users_ads
+        if(filteredAds=="")
+        {
+            console.log("true")
+        }
+        else{
+            console.log("false")
+        }
         
         this.props.setSearchedData(filteredAds)
         //For the search functionality
-        console.log(this.state.search)
+         console.log("Do you know what this is",filteredAds)
         // console.log("DATA OF REDUX IN HEADER==>", this.props.USER_AUTH_DATA)
         return (
                
 
             <div >
-                <ul>
+                {/* <ul>
                     {filteredAds.map((ads,i)=>{
-                        return <li key={ads.i}>{ads.photoURL}</li>
+                        return <li key={i}>{ads.title}</li>
                     })}
                     
-                </ul>                
+                </ul>                 */}
                 {/* This is boostrap navigation bar */}
 
                 <nav style={{ position: "relative", zIndex: "60000" }} className="navbar navbar-expand-lg navbar-light bg-light .container-fluid">
@@ -252,11 +258,11 @@ class Header extends React.Component {
 const mapStateToProps = (state) => ({
     USER_AUTH_DATA: state.auth.USER,
     users_ads: state.app.GET_SELL,
-
+    search_ads: state.app.SETSEARCHEDDATA
 })
 //updating the data of the state
 const mapDispatchToProp = (dispatch) => ({
-    setSearchedData: (data) => dispatch(setSearchedData(data))
+    setSearchedData: (data) => setSearchedData(data)
 })
 //updating the data of the state
 

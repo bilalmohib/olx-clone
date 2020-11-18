@@ -101,6 +101,7 @@ class HomePage extends React.Component {
 const mapStateToProps = (state) => ({
     users_ads: state.app.GET_SELL,
     USER_AUTH_DATA: state.auth.USER,
+    
 
 })
 
