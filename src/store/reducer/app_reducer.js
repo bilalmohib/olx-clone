@@ -3,7 +3,8 @@ const INITIAL_STATE = {
   GET_SELL: [],
   GET_BOOKMARKED:{},
   SET_KEY:"",
-  SETSEARCHEDDATA:[]
+  SETSEARCHEDDATA:[],
+  SETCONDITION:true
 
 }
 export default (state = INITIAL_STATE, action) => {
@@ -41,7 +42,13 @@ export default (state = INITIAL_STATE, action) => {
     })
     case "SETSEARCHEDDATA":
       return ({
+        ...state,
         SETSEARCHEDDATA: action.data
+      })
+      case "SETCONDITION":
+      return ({
+        ...state,
+        SETCONDITION: action.data
       })
   }
   return state;

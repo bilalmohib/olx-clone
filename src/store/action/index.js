@@ -1,3 +1,4 @@
+import { ImDisplay } from 'react-icons/im'
 import firebase from '../../firebase'
 
 const set_data = (data) => {
@@ -22,9 +23,9 @@ const setCurrentKey = (data) => {
 
 const setSearchedData=(data)=>{
     console.log("The data data you you searched is in action is : ",data)
-    // return (dispatch) => {
-    //     dispatch({type:"SETSEARCHEDDATA",data:data})
-    // }
+    return (dispatch) => {
+        dispatch({type:"SETSEARCHEDDATA",data:data})
+    }
 }
 
 const setSelectedCategory =(c) =>{
@@ -34,6 +35,12 @@ const setSelectedCategory =(c) =>{
     }
 }
 
+const showCondition=(data)=>{
+    console.log("what do you mean by this==>",data)
+    return (dispatch)=>{
+        dispatch({type:"SETCONDITION",data:data})
+    }
+}
 
 
 
@@ -163,6 +170,7 @@ export {
     add_bookmark,
     get_bookmarked,
     setSelectedCategory,
-    setSearchedData
+    setSearchedData,
+    showCondition
    
 }

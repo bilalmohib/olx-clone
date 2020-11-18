@@ -16,7 +16,7 @@ class HomePage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-
+      
         }
     }
     componentDidMount() {
@@ -29,6 +29,7 @@ class HomePage extends React.Component {
     }
     render() {
         console.log("firebase sales data", this.props.users_ads)
+        console.log("Search ads props data is===>",this.props.search_ads)
         return (
             <div className="home-page">
                 <div className="fixed-top" style={{ marginTop: "0px", width: "100%" }}>
@@ -39,12 +40,16 @@ class HomePage extends React.Component {
                     <Categories />
                     <hr />
                     <img className=".container-fluid" id="frontPic" src={frontPic} alt="This is the front pic of olx" />
-                    <ul style={{ position: "relative", marginTop: "5%" }}>
+
+                     {(this.props.currentCondition==true)?(
+                        <ul style={{ position: "relative", marginTop: "5%" }}>
+{/* This is another thing will be called later */}
+                        
                         {this.props.users_ads.map((v, i) => {
                             return <li id="mosti" key={i}>
                                 <div style={{ display: "inline-block" }}>
                                     {/* {console.log("key==>",i)} */}
-
+                                     
                                     <Ads
                                         index={i}
                                         url={v.url}
@@ -65,8 +70,47 @@ class HomePage extends React.Component {
                                 </div>
                             </li>
                         })}
+
+                        {/* This is another thing will be called later */}
                     </ul>
 
+                     ):(
+<ul style={{ position: "relative", marginTop: "5%" }}>
+{/* This is another thing will be called later */}
+                        
+                        {this.props.search_ads.map((v, i) => {
+                            return <li id="mosti" key={i}>
+                                <div style={{ display: "inline-block" }}>
+                                    {/* {console.log("key==>",i)} */}
+                                     
+                                    <Ads
+                                        index={i}
+                                        url={v.url}
+                                        email={v.SellerEmail}
+                                        phone={v.mobilePhone}
+                                        title={v.title}
+                                        price={v.price}
+                                        name={v.SellerName}
+                                        category={v.Categories}
+                                        userphoto={v.SellerPhoto}
+                                        time={v.dateTime}
+                                        description={v.description}
+                                        itemCondition={v.itemCondition}
+                                        mobile={v.mobilePhone}
+                                        location={v.selectLocation}
+                                    />
+
+                                </div>
+                            </li>
+                        })}
+
+                        {/* This is another thing will be called later */}
+                    </ul>
+
+                     )} 
+  
+
+                    
 
                     {/* here the components will be rendered */}
                     <div>
@@ -101,8 +145,8 @@ class HomePage extends React.Component {
 const mapStateToProps = (state) => ({
     users_ads: state.app.GET_SELL,
     USER_AUTH_DATA: state.auth.USER,
-    
-
+    search_ads: state.app.SETSEARCHEDDATA,
+    currentCondition:state.app.SETCONDITION
 })
 
 //updating the data of the state

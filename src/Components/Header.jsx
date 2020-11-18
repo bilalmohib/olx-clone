@@ -6,7 +6,7 @@ import { faShoppingCart, faAngleDown, faQuestionCircle, faBook, faCamera, faMapM
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import Login from "./LoginModal"
-import { setSearchedData} from '../store/action/index'
+import { setSearchedData,showCondition} from '../store/action/index'
 import "../Styling/App.css";
 import firebase from 'firebase/app';
 import firebaseAuth from 'firebase/auth/dist/index.esm'
@@ -14,12 +14,17 @@ import { ContactMail } from '@material-ui/icons';
 
 
 class Header extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
+    
         this.state = {
             selectLocation: "Punjab",
-            search:""
+            search:"",
+            condition:true
         }
+        //alert(this.props.search_ads)
+        
+
     }
     sign_out = () => {
         firebase.auth().signOut();
@@ -30,32 +35,61 @@ class Header extends React.Component {
         alert(e.target.value)
         this.setState({ selectLocation: e.target.value });
     }
+    dummy=(e)=>{
+        if(e.target.value.length==0)
+        {
+        
+             this.setState({condition:true})
+             this.props.showCondition(this.state.condition)
+        }
+        this.setState({
+            search:e.target.value,
+            condition:false
+        })
 
-    render() {
-        //For the search functionality
         let filteredAds = this.props.users_ads.filter(
+
             (ads)=>{
                 return ads.title.toLowerCase().indexOf(
                     this.state.search.toLowerCase())!=-1 
             }
         );
-      
-        if(filteredAds=="")
-        {
-            console.log("true")
-        }
-        else{
-            console.log("false")
-        }
+         
+         this.props.setSearchedData(filteredAds)
+         console.log("Chal raha hai Dummy",this.props.search_ads)      
+    }
+    
+    componentDidMount()
+    {
         
-        this.props.setSearchedData(filteredAds)
+    }
+    render() {
+        this.props.showCondition(this.state.condition)
+        console.log("The current condition is now in HEADER:",this.props.currentCondition)
         //For the search functionality
-         console.log("Do you know what this is",filteredAds)
+        {/* The actual thing from which I learnt how to develop a search functionality */}
+        let filteredAds = this.props.users_ads.filter(
+
+            (ads)=>{
+                return ads.title.toLowerCase().indexOf(
+                    this.state.search.toLowerCase())!=-1 
+            }
+        );
+        {/* The actual thing from which I learnt how to develop a search functionality */}
+
+
+        
+
+        
+        
+        //For the search functionality
+        //console.log("Do you know what this is",filteredAds)
         // console.log("DATA OF REDUX IN HEADER==>", this.props.USER_AUTH_DATA)
         return (
                
 
             <div >
+                {/* The actual thing from which I learnt how to develop a search functionality */}
                 {/* <ul>
                     {filteredAds.map((ads,i)=>{
                         return <li key={i}>{ads.title}</li>
@@ -63,6 +97,7 @@ class Header extends React.Component {
                     
                 </ul>                 */}
                 {/* This is boostrap navigation bar */}
+                {/* The actual thing from which I learnt how to develop a search functionality */}
 
                 <nav style={{ position: "relative", zIndex: "60000" }} className="navbar navbar-expand-lg navbar-light bg-light .container-fluid">
                     <img id="logo" src={logo} alt="" />
@@ -127,7 +162,7 @@ class Header extends React.Component {
                             </li>
                             <li className="nav-item">
                                 <div id="li_two">
-                                    <input value={this.state.search} onChange={(e)=>this.setState({search:e.target.value})} id="searchInput" type="text" className="form-control .container-fluid" placeholder="Find Cars,Mobile Phones and more..." aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                                    <input value={this.state.search} onChange={(e)=>this.dummy(e)} id="searchInput" type="text" className="form-control .container-fluid" placeholder="Find Cars,Mobile Phones and more..." aria-label="Recipient's username" aria-describedby="basic-addon2" />
                                     <div style={{ marginTop: "7px" }} className="input-group-append">
                                         <button className="input-group-text" id="basic-addon2"><FontAwesomeIcon id="Icon2" icon={faSearch} /></button>
                                     </div>
@@ -258,11 +293,13 @@ class Header extends React.Component {
 const mapStateToProps = (state) => ({
     USER_AUTH_DATA: state.auth.USER,
     users_ads: state.app.GET_SELL,
-    search_ads: state.app.SETSEARCHEDDATA
+    search_ads: state.app.SETSEARCHEDDATA,
+    currentCondition:state.app.SETCONDITION
 })
 //updating the data of the state
 const mapDispatchToProp = (dispatch) => ({
-    setSearchedData: (data) => setSearchedData(data)
+    setSearchedData: (data) => dispatch(setSearchedData(data)),
+    showCondition:(data)=>dispatch(showCondition(data))
 })
 //updating the data of the state
 
