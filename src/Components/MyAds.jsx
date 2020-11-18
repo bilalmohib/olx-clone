@@ -31,35 +31,48 @@ class MyAds extends React.Component {
                 <div id="structure">
                 <Categories />
                 <hr/>
-                <h1 className="text-primary text-center">This will be Ads which you posted.</h1>
-                {/*<img className=".container-fluid" id="frontPic" src={frontPic} alt="This is the front pic of olx" />
-                 <ul style={{position:"relative",marginTop:"5%",zIndex:"-1"}}>
-                    {this.props.users_ads.map((v, i) => {
-                        return <li style={{display:"inline"}} key={i}>
-                            <div style={{display:"inline-block"}}> */}
-                                {/* {console.log("key==>",i)} */}
-                                
-                            {/* <Ads
-                            index={i}
-                            url={v.url}
-                            email={v.SellerEmail}
-                            phone={v.mobilePhone} 
-                            title={v.title}
-                            price={v.price}
-                            name={v.SellerName}
-                            category={v.Categories}
-                            userphoto={v.SellerPhoto}
-                            time={v.dateTime}
-                            description={v.description}
-                            itemCondition={v.itemCondition}
-                            mobile={v.mobilePhone}
-                             />
-                           */}
-                            {/* </div>
-                        </li>
-                    })}
-                </ul>
-                 */}
+                <h1 className="text-primary text-center">Ads You posted are as follows.</h1>
+               
+
+
+                <h3 className="text-center text-dark">Home/My Ads/{this.props.USER_AUTH_DATA.name}</h3>
+                    <ul style={{ position: "relative", marginTop: "5%" }}>
+                        {this.props.users_ads.map((v, i) => {
+                            return <li id="mosti" key={i}>
+                                <div style={{ display: "inline-block" }}>
+                                    {/* {console.log("key==>",i)} */}
+                                    {
+                                        (this.props.USER_AUTH_DATA.email == v.SellerEmail) ? (
+                                            <div>
+
+                                                <Ads
+                                                    index={i}
+                                                    url={v.url}
+                                                    email={v.SellerEmail}
+                                                    phone={v.mobilePhone}
+                                                    title={v.title}
+                                                    price={v.price}
+                                                    name={v.SellerName}
+                                                    category={v.Categories}
+                                                    userphoto={v.SellerPhoto}
+                                                    time={v.dateTime}
+                                                    description={v.description}
+                                                    itemCondition={v.itemCondition}
+                                                    mobile={v.mobilePhone}
+                                                    location={v.selectLocation}
+                                                />
+
+                                            </div>
+                                        ) : (
+                                                <span></span>
+                                            )
+                                    }
+                                    
+                                   
+                                </div>
+                            </li>
+                        })}
+                    </ul>
 
                 {/* here the components will be rendered */}
                 <div>
@@ -74,7 +87,8 @@ class MyAds extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    users_ads: state.app.GET_SELL
+    users_ads: state.app.GET_SELL,
+    USER_AUTH_DATA: state.auth.USER
 
 })
 

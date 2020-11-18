@@ -14,6 +14,7 @@ import Success from '../Components/Success'
 import AdDetails from '../Components/AdDetails'
 import MyAds from '../Components/MyAds'
 import Types from '../Components/Types'
+import Footer from '../Components/Footer'
 
 class AppRouter extends React.Component {
     render() {
@@ -32,7 +33,8 @@ class AppRouter extends React.Component {
                       <Route exact path="/AdDetails" component={AdDetails} />
                       <Route exact path="/myads" component={MyAds} />
                       <Route exact path="/types" component={Types} />
-                      
+                      <Route exact path="/footer" component={Footer} />
+                     
                   </Router>
 
         )

@@ -39,7 +39,7 @@ class Ads extends React.Component {
         console.log("The key is here/::::::", this.props.SET_KEY)
         //        console.log("The bookmarked data is: ",this.props.GET_BOOKMARK)
         return (
-            <div style={{ borderRadius: "1%" }}>
+            <div style={{ borderRadius: "1%",boxShadow:"2px 1px 2px 1px silver" }}>
                 <Link onClick={() => this.props.setCurrentKey(this.props.index)} to="/AdDetails" className="btn btn-transparent">
                     {/* <Link className="btn btn-transparent"> */}
                     <div className="card" style={{ width: '17rem' }}>

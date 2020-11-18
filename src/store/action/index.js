@@ -20,6 +20,11 @@ const setCurrentKey = (data) => {
     }
 }
 
+const setSearchedData=(data)=>{
+    return (dispatch) => {
+        dispatch({type:"SETSEARCHEDDATA",data:data})
+    }
+}
 
 const setSelectedCategory =(c) =>{
     console.log("The selected category is : ",c)
@@ -157,5 +162,6 @@ export {
     add_bookmark,
     get_bookmarked,
     setSelectedCategory,
+    setSearchedData
    
 }

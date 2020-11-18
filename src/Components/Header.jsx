@@ -6,17 +6,19 @@ import { faShoppingCart, faAngleDown, faQuestionCircle, faBook, faCamera, faMapM
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import Login from "./LoginModal"
-
+import { setSearchedData} from '../store/action/index'
 import "../Styling/App.css";
 import firebase from 'firebase/app';
 import firebaseAuth from 'firebase/auth/dist/index.esm'
+import { ContactMail } from '@material-ui/icons';
 
 
 class Header extends React.Component {
     constructor() {
         super()
         this.state = {
-            selectLocation: "Punjab"
+            selectLocation: "Punjab",
+            search:""
         }
     }
     sign_out = () => {
@@ -30,11 +32,30 @@ class Header extends React.Component {
     }
 
     render() {
+        //For the search functionality
+        let filteredAds = this.props.users_ads.filter(
+            (ads)=>{
+                return ads.title.toLowerCase().indexOf(
+                    this.state.search.toLowerCase())!=-1 
+            }
+        );
+      
+            filteredAds=this.props.users_ads
+        
+        this.props.setSearchedData(filteredAds)
+        //For the search functionality
+        console.log(this.state.search)
         // console.log("DATA OF REDUX IN HEADER==>", this.props.USER_AUTH_DATA)
         return (
-
+               
 
             <div >
+                <ul>
+                    {filteredAds.map((ads,i)=>{
+                        return <li key={ads.i}>{ads.photoURL}</li>
+                    })}
+                    
+                </ul>                
                 {/* This is boostrap navigation bar */}
 
                 <nav style={{ position: "relative", zIndex: "60000" }} className="navbar navbar-expand-lg navbar-light bg-light .container-fluid">
@@ -100,11 +121,12 @@ class Header extends React.Component {
                             </li>
                             <li className="nav-item">
                                 <div id="li_two">
-                                    <input id="searchInput" type="text" className="form-control" placeholder="Find Cars,Mobile Phones and more..." aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                                    <input value={this.state.search} onChange={(e)=>this.setState({search:e.target.value})} id="searchInput" type="text" className="form-control .container-fluid" placeholder="Find Cars,Mobile Phones and more..." aria-label="Recipient's username" aria-describedby="basic-addon2" />
                                     <div style={{ marginTop: "7px" }} className="input-group-append">
                                         <button className="input-group-text" id="basic-addon2"><FontAwesomeIcon id="Icon2" icon={faSearch} /></button>
                                     </div>
                                 </div>
+                                
 
 
                                 <div style={{ width: "100%" }} className="inputMobile">
@@ -179,7 +201,7 @@ class Header extends React.Component {
 
                                 {(this.props.USER_AUTH_DATA.isSignedIn) ? (
 
-                                    <Link className="inputDesktop" to="/chat"> <FontAwesomeIcon className="text-dark" style={{ fontSize: "30px", marginLeft: "15px", marginTop: "15px" }} icon={faComment} /></Link>
+                                    <Link id="fachat" className="inputDesktop" to="/chat"> <FontAwesomeIcon className="text-dark" style={{ fontSize: "30px", marginLeft: "15px", marginTop: "15px" }} icon={faComment} /></Link>
                                 ) : (
                                         <span></span>
                                     )
@@ -191,7 +213,7 @@ class Header extends React.Component {
                                 {
                                     (this.props.USER_AUTH_DATA.isSignedIn) ?
                                         (
-                                            <Link className="inputDesktop" style={{ fontSize: "20px", border: "1px solid black", borderRadius: "10px", backgroundColor: "white" }} to="/order">Favorites (0)<FontAwesomeIcon className="text-dark" style={{ fontSize: "30px", marginTop: "15px" }} icon={faShoppingCart} /></Link>
+                                            <Link id="facart" className="inputDesktop" style={{ fontSize: "15px", border: "1px solid black", borderRadius: "10px", backgroundColor: "white" }} to="/order">(0)<FontAwesomeIcon className="text-dark" style={{ fontSize: "30px", marginTop: "1%" }} icon={faShoppingCart} /></Link>
                                         ) :
                                         (
                                             <span></span>
@@ -213,6 +235,7 @@ class Header extends React.Component {
                                             </div>
                                         )
                                 }
+                                
                             </li>
                         </ul>
 
@@ -227,7 +250,14 @@ class Header extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-    USER_AUTH_DATA: state.auth.USER
-})
+    USER_AUTH_DATA: state.auth.USER,
+    users_ads: state.app.GET_SELL,
 
-export default connect(mapStateToProps, null)(Header);
+})
+//updating the data of the state
+const mapDispatchToProp = (dispatch) => ({
+    setSearchedData: (data) => dispatch(setSearchedData(data))
+})
+//updating the data of the state
+
+export default connect(mapStateToProps, mapDispatchToProp)(Header);

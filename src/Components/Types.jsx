@@ -12,8 +12,10 @@ import Ads from './Ads'
 import frontPic from '../UI/front.png'
 import '../Styling/Header.css'
 import '../Styling/Home.css'
+import '../Styling/Home.css'
 import firebase from 'firebase/app';
 import firebaseAuth from 'firebase/auth/dist/index.esm'
+import Footer from './Footer'
 
 class Types extends React.Component {
     state = {
@@ -41,7 +43,7 @@ class Types extends React.Component {
                     <h3 className="text-center text-dark">Home/{this.props.current_category.Category}/{this.props.current_category.SubCategory}</h3>
                     <ul style={{ position: "relative", marginTop: "5%" }}>
                         {this.props.users_ads.map((v, i) => {
-                            return <li style={{ display: "inline" }} key={i}>
+                            return <li id="mosti" key={i}>
                                 <div style={{ display: "inline-block" }}>
                                     {/* {console.log("key==>",i)} */}
                                     {
@@ -139,7 +141,7 @@ class Types extends React.Component {
                     {/* here the components will be rendered */}
 
                 </div >
-            
+            <Footer/>
             </div >
         )
     }

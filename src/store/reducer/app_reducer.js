@@ -2,7 +2,8 @@ const INITIAL_STATE = {
   SELL: {},
   GET_SELL: [],
   GET_BOOKMARKED:{},
-  SET_KEY:""
+  SET_KEY:"",
+  SETSEARCHEDDATA:{}
 
 }
 export default (state = INITIAL_STATE, action) => {
@@ -38,6 +39,11 @@ export default (state = INITIAL_STATE, action) => {
           ...state,
           SET_SUB_CATEGORY: action.data
     })
+    case "SETSEARCHEDDATA":
+      return ({
+        ...state,
+        SETSEARCHEDDATA: action.data
+      })
   }
   return state;
 }

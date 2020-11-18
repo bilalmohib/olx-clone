@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import Header from "./Header"
 import { Link } from 'react-router-dom'
 import Ads from './Ads'
+import Footer from './Footer'
 import frontPic from '../UI/front.png'
 import '../Styling/Header.css'
 import '../Styling/Home.css'
@@ -65,7 +66,7 @@ class AdDetails extends React.Component {
                                     </div>
 
                                 </div>
-                                <Link style={{ marginLeft: "5%", marginTop: "4%", fontSize: "19px", width: "90%" }} className="btn btn-primary text-center">Chat with seller</Link>
+                                <Link to="/chat" style={{ marginLeft: "5%", marginTop: "4%", fontSize: "19px", width: "90%" }} className="btn btn-primary text-center">Chat with seller</Link>
                                 <h6 style={{ marginTop: "4%" }} className="text-center text-dark"> <FiPhone style={{fontSize:"25px"}} /> {this.props.users_ads[this.props.SET_KEY].mobilePhone}</h6>
                                 <div style={{ display: "flex" }}>
                                     <h4 style={{ marginTop: "1.5%" }} className="text-dark">Posted In :-</h4>
@@ -102,7 +103,7 @@ class AdDetails extends React.Component {
                 </div>
 
 
-
+              <Footer/>
 
             </div>
         )

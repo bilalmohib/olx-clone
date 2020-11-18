@@ -12,6 +12,7 @@
 }
 nav
 {
+    margin-top: 100px;
     width: 100%;
     height: 70px;
     background-color:#f7f8f9;
@@ -48,8 +49,8 @@ option:hover{
     box-shadow: 0.5px 0.5px 0.5px 0px rgb(30, 140, 160);;
     display:flex;
     height: 47px;
-    margin-left: 15px;
-    width: 270px;
+    margin-left: -10%;
+    width: 250px;
     border-radius: 5px;
 }
 
@@ -98,8 +99,9 @@ select option:first-child{
     font-size: 8px;
 }
 #searchInput{
-    margin-left: 20px;
-    min-width: 500px;
+    margin-left: 10%;
+    width: 500px;
+    
     font-size: 17px;
     height: 48px;
     border: 0.5px solid rgb(30, 140, 160);
@@ -140,6 +142,9 @@ a{
 }
 #li_two{
     display: flex;
+    margin-left: -20px;
+    width:100%;
+    margin-right: 25%;
 }
 #camico
 {
@@ -174,6 +179,32 @@ box-shadow: 10px -10px 10px 1px rgb(165, 165, 165);
     top: "0.1%";
     left: "75%";
 }
+#facart,#fachat{
+
+}
+@media all and (max-width:1125px) 
+{
+    #facart,#fachat{
+    display: none;
+    }
+    #searchInput{
+        margin-left: 10%;
+        max-width: 500px;
+        font-size: 17px;
+        height: 48px;
+        border: 0.5px solid rgb(30, 140, 160);
+        margin-top: 10px;
+    }
+}
+
+@media all and (max-width:1070px) 
+{
+    #sellbtn{
+        display: none;
+    }
+    
+
+}
 @media all and (max-width:1000px) 
 {
     .inputDesktop{
@@ -193,6 +224,7 @@ box-shadow: 10px -10px 10px 1px rgb(165, 165, 165);
     color: white;
     font-size: 20px;
     border-radius: 5%;
+    
     }
     #li_two{
         display: none;
