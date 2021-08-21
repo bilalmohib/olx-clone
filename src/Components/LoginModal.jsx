@@ -155,7 +155,7 @@ class Login extends React.Component {
                             <div style={{ height: "200px" }}>
                                  <h1 className="text-success" style={{ textAlign: "center", marginTop: "5%" }}>Sigin To continue Please</h1>
                                  <div className="text-center"><img width="100" height="100" src="https://cdn2.iconfinder.com/data/icons/mixd/512/23_OLX-512.png" alt="This is OLX LOGO"/></div>
-                                 <h1 style={{fontFamily:"serif"}} className="text-center">By Muhammad Bilal Mohib-ul-Nabi <a href="https://github.com/Muhammad-Bilal-7896/">Github Profile</a></h1> 
+                                 <h1 style={{fontFamily:"serif"}} className="text-center">By Muhammad Bilal Mohib-ul-Nabi <a href="https://github.com/bilalmohib/">Github Profile</a></h1> 
                                 <StyledFirebaseAuth
                                     uiConfig={this.uiConfig}
                                     firebaseAuth={firebase.auth()}
