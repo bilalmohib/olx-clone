@@ -1,0 +1,44 @@
+/* ul
+{
+    width: 100%;
+    color: cornsilk;
+    height: 60px;
+    display: inline-flexbox;
+ 
+} */
+/* #bigDiv:ul{
+    width: initial;
+    color: initial;
+    height: initial;
+    display: initial;
+} */
+.bigDiv p Link{
+    color: black;
+    text-decoration: none;
+}
+#allitems{
+    width:95%;
+    color: grey;
+    border: 1px solid black;
+    margin-top: 20vh;
+    height: 70vh;
+}
+Link{
+    width: fit-content;
+    display: block;
+}
+#displayDesktop
+{
+    display: none;
+}
+@media all and (max-width:1000px)
+{
+    #displayDesktop
+    {
+       display: initial;
+    }
+    #categories
+    {
+       display: none;    
+    }
+}
